@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="">
       <Hero 
-        title="Lorem ipsum dolor sit."
+        title="TESTE"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         hasButton
         link="/"
