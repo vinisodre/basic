@@ -7,7 +7,13 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/Sheet";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { menu }  from "@/constants";
+import { main } from "@/app/queries";
 
+type NavbarProps = {
+  name: string;
+}
+
+console.log('teste', main)
 export function Navbar() {
   const buildMenu = () => {
     return menu.map((item, index) => {
@@ -36,8 +42,7 @@ export function Navbar() {
         <MountainIcon className="h-6 w-6 mx-auto lg:hidden" />
         <SheetContent side="left">
           <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-            <MountainIcon className="h-6 w-6" />
-            <span className="sr-only">Acme Inc</span>
+            <span> {main[0].name} </span>
           </Link>
           <div className="grid gap-2 py-6">
             {buildMenu()}
@@ -46,8 +51,7 @@ export function Navbar() {
         </SheetContent>
       </Sheet>
       <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-        <MountainIcon className="h-6 w-6" />
-        <span className="sr-only">Acme Inc</span>
+        <span> {main[0].name} </span>
       </Link>
       <nav className="ml-auto hidden lg:flex gap-6">
         {buildMenu()}

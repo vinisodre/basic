@@ -5,6 +5,7 @@
  */
 
 import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 export type AreasProps = {
   title?: string;
@@ -31,7 +32,10 @@ export function Areas({
       >
         <h3 className="text-2xl font-bold">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
-        {hasButton && <Button className="mt-4">{buttonText}</Button>}
+        {hasButton && 
+          <Link href={link} prefetch={false}>
+            <Button className="mt-4">{buttonText}</Button>
+          </Link>}
       </div>
     </>
   );

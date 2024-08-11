@@ -4,7 +4,8 @@ import { Hero } from "@/components/Hero";
 import { ImageGalery } from "@/components/ImageGaleryBlock";
 import { ImageTextBlock } from "@/components/ImageTextBlock";
 import { TwoColumnsText } from "@/components/TwoColumnsText";
-import AreaBlock from "@/components/ui/AreaBlock";
+import AreaBlock from "@/components/AreaBlock";
+
 import Image from "next/image";
 
 import { areas, imagesExamples, blogPosts } from '@/constants';
@@ -20,7 +21,7 @@ export default function Home() {
         link="/"
         linkText="Saiba mais"
       />
-     <AreaBlock areas={areas} />
+     <AreaBlock  />
       
       <TwoColumnsText 
         title="Sobre nós" 

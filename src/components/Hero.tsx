@@ -4,20 +4,9 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-/** Add fonts into your Next.js project:
 
-import { Inter } from 'next/font/google'
-
-inter({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-To read more about using these font, please visit the Next.js documentation:
-- App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
-- Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
-**/
 import Link from "next/link";
+import { heroContent } from "@/app/queries";
 
 type HeroProps = {
   title?: string;
@@ -26,6 +15,8 @@ type HeroProps = {
   link?: string;
   linkText?: string;
 };
+
+console.log('teste hero', heroContent)
 
 export function Hero({
   title,
@@ -39,23 +30,23 @@ export function Hero({
       className="relative w-full h-[60vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage:
-          'url("https://images.unsplash.com/photo-1692827728176-955e9588dede?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          `url("${heroContent[0].imageHref}")`,
       }}
     >
       <div className="absolute inset-0 bg-black/50 z-0" />
       <div className="relative z-10 text-center space-y-6 max-w-3xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {title}
+          {heroContent[0].title}
         </h1>
-        <p className="text-xl text-gray-300">{description}</p>
+        <p className="text-xl text-gray-300">{heroContent[0].subtitle}</p>
         <div>
-          {hasButton && (
+          {heroContent[0].hasButton && (
             <Link
-              href={link}
+              href={heroContent[0].link}
               className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               prefetch={false}
             >
-              {linkText}
+              {heroContent[0].linkText}
             </Link>
           )}
         </div>

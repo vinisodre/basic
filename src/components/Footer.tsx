@@ -4,21 +4,9 @@
 * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
 */
 
-/** Add fonts into your Next.js project:
-
-import { Inter } from 'next/font/google'
-
-inter({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-To read more about using these font, please visit the Next.js documentation:
-- App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
-- Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
-**/
 import Link from "next/link"
 import { footerMenu } from "@/constants"
+import { main } from "@/app/queries"
 
 export function Footer() {
   return (
@@ -27,11 +15,11 @@ export function Footer() {
         <div className="container px-4 md:px-6 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-8 text-sm">
           <div className="grid gap-1">
             <Link href="#" className="flex items-center gap-2">
-              <MountainIcon className="h-6 w-6" />
-              <span className="font-medium">Acme Inc</span>
+              
+              <span className="font-medium"> { main[0].name } </span>
             </Link>
             <p className="text-muted-foreground">
-              Beautifully designed components that you can copy and paste into your apps.
+              {main[0].address}
             </p>
           </div>
           {footerMenu.map((item, index) => (
