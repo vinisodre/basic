@@ -10,9 +10,9 @@ const page = () => {
         <div className='bg-primary-foreground'>
             <Hero />
             <TwoColumnsText />
-            <ImageTextBlock />
+            
             <TwoColumnsText />
-            <ImageGalery />
+            
         </div>
     </div>
   )

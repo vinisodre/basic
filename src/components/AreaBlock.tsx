@@ -14,7 +14,7 @@ const AreaBlock = async () => {
       <div className="container px-4 md:px-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
         {areasContent.map((item, index) => (
           <Areas
-            key={index} // Idealmente, use um identificador único, como item.id, se disponível
+            key={index}
             title={item.title}
             description={item.description}
             hasButton={item.hasButton}

@@ -1,5 +1,5 @@
 import { Hero } from '@/components/Hero'
-import { MyTeam } from '@/components/MyTeam'
+import { Professores } from '@/components/Professores'
 import { TwoColumnsText } from '@/components/TwoColumnsText'
 import React from 'react'
 
@@ -7,7 +7,7 @@ const professores = () => {
   return (
     <div className='container mx-auto px-4 md:px-6'>
         <div className=''>
-            <MyTeam />
+            <Professores />
         </div>
     </div>
   )

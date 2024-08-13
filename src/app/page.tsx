@@ -1,5 +1,5 @@
 
-import { BlogBlock } from "@/components/Blog-block";
+
 import { Hero } from "@/components/Hero";
 import { ImageGalery } from "@/components/ImageGaleryBlock";
 import { ImageTextBlock } from "@/components/ImageTextBlock";
@@ -9,6 +9,7 @@ import AreaBlock from "@/components/AreaBlock";
 import Image from "next/image";
 
 import { areas, imagesExamples, blogPosts } from '@/constants';
+import { BlogBlock } from "@/components/Blog-block";
 
 
 export default function Home() {
@@ -44,7 +45,7 @@ export default function Home() {
 
       <ImageGalery title="Título" description="um subtitulo para chamar a atenção" galery={imagesExamples} />
       
-      <BlogBlock blockTitle="Artigos do nosso blog" posts={blogPosts} hasButton/>
+      <BlogBlock blockTitle="Artigos do nosso blog" hasButton/>
     </main>
   );
 }

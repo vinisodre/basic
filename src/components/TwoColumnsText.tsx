@@ -12,7 +12,7 @@ interface TwoColumnsTextProps {
   title?: string;
   column1?: string;
   column2?: string;
-  hasButton: boolean;
+  hasButton?: boolean;
 }
 
 export function TwoColumnsText({

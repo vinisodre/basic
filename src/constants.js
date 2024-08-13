@@ -67,6 +67,7 @@ const blogPosts = [
     buttonText: "Leia mais",
     imageHref:  "https://images.unsplash.com/photo-1722171210773-4a2e54197061?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     alt: "Imagem representando a linguagem Solidity",
+    content: "Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum. Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum.Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum.Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum.Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum.Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum.Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum.Uma introdução à linguagem de programação Solidity, usada para desenvolver smart contracts na blockchain Ethereum."
   },
   {
     title: "Primeiros Passos com Remix",

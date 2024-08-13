@@ -1,13 +1,13 @@
 import React from 'react';
 
-type ArrowRightIconProps = {
-  classname?: string;
+type ArrowRightIconProps = React.SVGProps<SVGSVGElement> & {
+  className?: string;
 };
 
-const ArrowRightIcon: React.FC<ArrowRightIconProps> = ({ classname, ...props }) => {
+function ArrowRightIcon({ className, ...props }: ArrowRightIconProps) {
   return (
     <svg
-      className={classname}
+      className={className}
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -23,6 +23,6 @@ const ArrowRightIcon: React.FC<ArrowRightIconProps> = ({ classname, ...props }) 
       <path d="m12 5 7 7-7 7" />
     </svg>
   );
-};
+}
 
 export default ArrowRightIcon;

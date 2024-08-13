@@ -11,12 +11,11 @@ import { heroContent } from "@/app/queries";
 type HeroProps = {
   title?: string;
   description?: string;
-  hasButton: boolean;
+  hasButton?: boolean;
   link?: string;
   linkText?: string;
 };
 
-console.log('teste hero', heroContent)
 
 export function Hero({
   title,

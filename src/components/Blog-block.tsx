@@ -7,13 +7,16 @@
 import Link from "next/link";
 import { Button } from "./ui/Button";
 import ArrowRightIcon from "./ui/ArrowRightIcon";
-import BlogCard, { BlogCardProps } from "./ui/BlogCard"; // Importando BlogCardProps
+import BlogCard, { BlogCardProps } from "./ui/BlogCard";
+import { blogPosts } from "@/app/queries";
 
 type BlogBlockProps = {
   blockTitle?: string;
-  hasButton: boolean;
-  posts: BlogCardProps[];
+  hasButton?: boolean;
+  posts?: BlogCardProps[];
 };
+
+console.log(blogPosts)
 
 export function BlogBlock({ blockTitle, posts, hasButton=false }: BlogBlockProps) {
   return (
@@ -25,15 +28,14 @@ export function BlogBlock({ blockTitle, posts, hasButton=false }: BlogBlockProps
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((item, index) => (
+          {blogPosts.map((item, index) => (
             <BlogCard
               key={index}
               title={item.title}
               description={item.description}
               link={item.link}
               buttonText={item.buttonText}
-              imageHref={item.imageHref}
-              alt={item.alt}
+              image={item.image}
             />
           ))}
         </div>

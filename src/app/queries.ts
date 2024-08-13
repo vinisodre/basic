@@ -21,7 +21,7 @@ const areasQuery = `*[_type == "area"]{
   }`;
   const areasContent = await sanityFetch<SanityDocument[]>({query: areasQuery});
 
-
+//Hero
 const heroQuery = `*[_type == "Hero"]{
     title,
     subtitle,
@@ -32,5 +32,16 @@ const heroQuery = `*[_type == "Hero"]{
   }`;
   const heroContent = await sanityFetch<SanityDocument[]>({query: heroQuery});
 
+//Blog Posts
+const blogQuery = `*[_type == "blogPost"]{
+  title,
+  description,
+  content,
+  "link": link.current,
+  buttonText,
+  "image": image.asset->url
+}`
+  const blogPosts = await sanityFetch<SanityDocument[]>({query: blogQuery});
 
-  export { heroContent, areasContent, main } 
+
+  export { heroContent, areasContent, main, blogPosts } 
