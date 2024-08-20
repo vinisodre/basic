@@ -3,24 +3,17 @@
 * @see https://v0.dev/t/hGqapeEJi5x
 * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
 */
+import { topbar } from "@/app/queries"
 
-/** Add fonts into your Next.js project:
+type TopbarProps = {
+  text: string;
+}
 
-import { Inter } from 'next/font/google'
-
-inter({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-To read more about using these font, please visit the Next.js documentation:
-- App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
-- Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
-**/
 export function Topbar() {
+  const topbarData: TopbarProps = topbar[0];
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 text-center">
-      <p className="text-sm font-medium">Limited time sale - 50% off everything!</p>
+      <p className="text-sm font-medium">{topbarData.text}</p>
     </div>
   )
 }

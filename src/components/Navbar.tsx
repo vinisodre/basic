@@ -38,7 +38,6 @@ export function Navbar() {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <h1>t</h1>
         <SheetContent side="left">
           <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
             <span> {main[0].name} </span>

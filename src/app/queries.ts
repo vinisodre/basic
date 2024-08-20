@@ -9,6 +9,37 @@ const mainInfo = `*[_type == "Basic"]{
 }`;
 const main = await sanityFetch<SanityDocument[]>({query: mainInfo});
 
+//Topbar
+const topbarQuery = `*[_type == "Topbar"]{
+  text
+}`;
+const topbar = await sanityFetch<SanityDocument[]>({query: topbarQuery});
+
+
+//ImageText
+const imageTextQuery = `*[_type == 'imageText']{
+  title,
+  "image": image.asset->url,
+  alt,
+  content,
+  hasOneButton,
+    linkButtonOne,
+    textButtonOne,
+    hasTwoButtons,
+    linkButtonTwo,
+    textButtonTwo,
+}`
+const imageText = await sanityFetch<SanityDocument[]>({query: imageTextQuery});
+
+//twoColumnsText
+const twoColumnsTextQuery = `*[_type == "TwoColumnsText"]{
+  title,
+  text1,
+  text2,
+  hasButton
+}`;
+const twoColumnsText = await sanityFetch<SanityDocument[]>({query: twoColumnsTextQuery});
+
 
 //Areas
 const areasQuery = `*[_type == "area"]{
@@ -44,4 +75,4 @@ const blogQuery = `*[_type == "blogPost"]{
   const blogPosts = await sanityFetch<SanityDocument[]>({query: blogQuery});
 
 
-  export { heroContent, areasContent, main, blogPosts } 
+  export { heroContent, areasContent, main, blogPosts, topbar, twoColumnsText, imageText }; 

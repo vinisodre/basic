@@ -7,7 +7,9 @@
 
 import ArrowRightIcon from "./ui/ArrowRightIcon";
 import { Button } from "./ui/Button";
+import { twoColumnsText } from "@/app/queries";
 
+const { title, text1, text2, hasButton } = twoColumnsText[0];
 interface TwoColumnsTextProps {
   title?: string;
   column1?: string;
@@ -15,12 +17,7 @@ interface TwoColumnsTextProps {
   hasButton?: boolean;
 }
 
-export function TwoColumnsText({
-  title = "Introducing our new product",
-  column1 = "Our new product comes with a range of features to make your life easier. From automated workflows to powerful analytics, we've got you covered.",
-  column2 = "Using our new product will provide you with a number of benefits, including increased productivity, better decision-making, and more. Experience the difference today.",
-  hasButton = false,
-}: TwoColumnsTextProps) {
+export function TwoColumnsText() {
   return (
     <div className="container mx-auto px-4 md:px-6 py-12 md:py-24">
       <div className="grid grid-cols-1 gap-8">
@@ -29,10 +26,10 @@ export function TwoColumnsText({
         </div>
         <div className="grid lg:grid-cols-2 gap-8">
           <div>
-            <p className="text-muted-foreground">{column1}</p>
+            <p className="text-muted-foreground">{text1}</p>
           </div>
           <div>
-            <p className="text-muted-foreground">{column2}</p>
+            <p className="text-muted-foreground">{text2}</p>
           </div>
         </div>
         {hasButton && (

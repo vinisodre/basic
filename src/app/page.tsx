@@ -45,7 +45,7 @@ export default function Home() {
 
       <ImageGalery title="Título" description="um subtitulo para chamar a atenção" galery={imagesExamples} />
       
-      <BlogBlock blockTitle="Artigos do nosso blog" hasButton/>
+      <BlogBlock blockTitle="BLOG" hasButton/>
     </main>
   );
 }

@@ -16,7 +16,7 @@ type BlogBlockProps = {
   posts?: BlogCardProps[];
 };
 
-console.log(blogPosts)
+console.log(blogPosts.length);
 
 export function BlogBlock({ blockTitle, posts, hasButton=false }: BlogBlockProps) {
   return (
