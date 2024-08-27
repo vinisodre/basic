@@ -15,18 +15,18 @@ type ImageTextBlockProps = {
   alt: string;
 };
 
-  const {
-    title,
-    image,
-    alt,
-    content,
-    hasOneButton,
-    linkButtonOne,
-    textButtonOne,
-    hasTwoButtons,
-    linkButtonTwo,
-    textButtonTwo,
-  } = imageText[0];
+const {
+  title,
+  image,
+  alt,
+  content,
+  hasOneButton,
+  linkButtonOne,
+  textButtonOne,
+  hasTwoButtons,
+  linkButtonTwo,
+  textButtonTwo,
+} = imageText[0];
 
 export function ImageTextBlock() {
   return (
@@ -43,9 +43,8 @@ export function ImageTextBlock() {
       <div className="flex flex-col justify-center space-y-6">
         <div className="space-y-2">
           <h2 className="text-3xl font-bold tracking-tighter">{title}</h2>
-          <p className="text-muted-foreground">
-          <PortableText value={content} />
-          </p>
+
+          <PortableText className="text-muted-foreground" value={content} />
         </div>
         <div className="space-x-4">
           {hasOneButton && linkButtonOne && (
