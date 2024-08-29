@@ -1,9 +1,9 @@
 import { defineType, defineField } from "sanity";
 
 export const areasType = defineType({
-  name: "area",
+  name: "areas",
+  type: "object",
   title: "Áreas",
-  type: "document",
   fields: [
     defineField({
       name: "title",
@@ -24,6 +24,9 @@ export const areasType = defineType({
       title: "Tem botão?",
       type: "boolean",
       description: "Indica se o botão deve ser exibido.",
+      options: {
+        layout: "checkbox",
+      },
     }),
     defineField({
       name: "link",

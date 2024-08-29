@@ -2,8 +2,8 @@ import { defineField, defineType } from "sanity";
 
 export const imageText = defineType({
   name: "imageText",
+  type: "object",
   title: "Imagem e Texto",
-  type: "document",
   fields: [
     defineField({
       name: "title",

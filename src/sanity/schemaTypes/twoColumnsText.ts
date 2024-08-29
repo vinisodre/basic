@@ -1,9 +1,9 @@
 import { defineField, defineType } from "sanity";
 
 export const twoColumnsText = defineType({
-  name: "TwoColumnsText",
+  name: "twoColumnsText",
+  type: "object",
   title: "Texto em duas colunas",
-  type: "document",
   fields: [
     defineField({
       name: "title",
@@ -25,6 +25,9 @@ export const twoColumnsText = defineType({
       title: "Tem botão?",
       type: "boolean",
       description: "Indica se o botão deve ser exibido.",
+      options: {
+        layout: "checkbox",
+      },
     }),
     defineField({
         name: "link",
