@@ -7,9 +7,11 @@ import { topbar } from './topbar'
 import { twoColumnsText } from './twoColumnsText'
 import { imageText } from './imageText'
 import { pageType } from './pageType'
+import { areasBlockType } from './areasBlockType'
+
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    pageType, settings, areasType, heroType, blogPost, topbar, twoColumnsText, imageText ],
+    pageType, settings, areasType, heroType, blogPost, topbar, twoColumnsText, imageText, areasBlockType ],
 }
 

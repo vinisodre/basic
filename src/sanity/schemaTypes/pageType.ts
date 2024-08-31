@@ -1,11 +1,15 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const pageType = defineType({
-  name: 'page',
-  type: 'document',
-  title: 'Page',
+  name: "page",
+  type: "document",
+  title: "Page",
   fields: [
-    defineField({name: 'title', type: 'string', description: "Nome da página",}),
+    defineField({
+      name: "title",
+      type: "string",
+      description: "Nome da página",
+    }),
     defineField({
       name: "slug",
       title: "Endereço da página",
@@ -19,28 +23,28 @@ export const pageType = defineType({
       },
     }),
     defineField({
-      name: 'pageBuilder',
-      type: 'array',
-      title: 'Page builder',
+      name: "pageBuilder",
+      type: "array",
+      title: "Page builder",
       description: "Coloque os blocos que irão aparecer na página",
       of: [
         defineArrayMember({
-          name: 'hero',
-          type: 'hero',
+          name: "hero",
+          type: "hero",
         }),
         defineArrayMember({
-          name: 'twoColumnsText',
-          type: 'twoColumnsText',
+          name: "twoColumnsText",
+          type: "twoColumnsText",
         }),
         defineArrayMember({
-          name: 'imageText',
-          type: 'imageText',
+          name: "imageText",
+          type: "imageText",
         }),
         defineArrayMember({
-          name: 'areas',
-          type: 'areas',
+          name: "areasBlock",
+          type: "areasBlock",
         }),
       ],
     }),
   ],
-})
+});

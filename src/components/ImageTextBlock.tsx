@@ -1,21 +1,21 @@
 import Link from "next/link";
-import { imageText } from "@/app/queries";
 import { PortableText } from "next-sanity";
 
 type ImageTextBlockProps = {
   title: string;
-  description: string;
+  content: string;
   hasOneButton?: boolean;
   hasTwoButtons?: boolean;
   linkButtonOne?: string;
   linkButtonTwo?: string;
-  buttonTextOne?: string;
-  buttonTextTwo?: string;
+  textButtonOne?: string;
+  textButtonTwo?: string;
   image: string;
   alt: string;
 };
 
-const {
+
+export function ImageTextBlock({
   title,
   image,
   alt,
@@ -26,9 +26,7 @@ const {
   hasTwoButtons,
   linkButtonTwo,
   textButtonTwo,
-} = imageText[0];
-
-export function ImageTextBlock() {
+}: ImageTextBlockProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-24">
       <div className="rounded-lg overflow-hidden">

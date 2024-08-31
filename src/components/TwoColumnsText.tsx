@@ -5,19 +5,27 @@
  */
 
 
+import Link from "next/link";
 import ArrowRightIcon from "./ui/ArrowRightIcon";
 import { Button } from "./ui/Button";
-import { twoColumnsText } from "@/app/queries";
 
-const { title, text1, text2, hasButton } = twoColumnsText[0];
 interface TwoColumnsTextProps {
   title?: string;
   column1?: string;
   column2?: string;
   hasButton?: boolean;
+  buttonText?: string;
+  link?: string;
 }
 
-export function TwoColumnsText() {
+export function TwoColumnsText({
+  title,
+  column1,
+  column2,
+  hasButton = false,
+  buttonText = "Saiba mais",
+  link = "#",
+}: TwoColumnsTextProps) {
   return (
     <div className="container mx-auto px-4 md:px-6 py-12 md:py-24">
       <div className="grid grid-cols-1 gap-8">
@@ -26,16 +34,20 @@ export function TwoColumnsText() {
         </div>
         <div className="grid lg:grid-cols-2 gap-8">
           <div>
-            <p className="text-muted-foreground">{text1}</p>
+            <p className="text-muted-foreground">{column1}</p>
           </div>
           <div>
-            <p className="text-muted-foreground">{text2}</p>
+            <p className="text-muted-foreground">{column2}</p>
           </div>
         </div>
         {hasButton && (
-          <Button variant="link" className="justify-end">
-            Saiba Mais <ArrowRightIcon className="ml-1 w-4 h-4" />
-          </Button>
+          <div className="flex justify-end">
+            <Link href={link} >
+            <Button variant="link" >
+              {buttonText} <ArrowRightIcon className="ml-1 w-4 h-4" />
+            </Button>
+          </Link>
+          </div>
         )}
       </div>
     </div>

@@ -11,12 +11,12 @@ export const twoColumnsText = defineType({
       type: "string",
     }),
     defineField({
-      name: "text1",
+      name: "column1",
       description: "Coluna 1",
       type: "string",
     }),
     defineField({
-      name: "text2",
+      name: "column2",
       description: "Coluna 2",
       type: "string",
     }),
@@ -33,6 +33,11 @@ export const twoColumnsText = defineType({
         name: "link",
         title: "Link",
         type: "string",
-    })
+    }),
+    defineField({
+      name: "buttonText",
+      title: "Texto do botão",
+      type: "string",
+  })
   ],
 });

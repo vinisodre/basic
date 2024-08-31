@@ -1,26 +1,16 @@
 
 
 import { sanityFetch } from "@/sanity/client";
-import { PortableText, SanityDocument } from "next-sanity";
+import { SanityDocument } from "next-sanity";
 import { Hero } from "@/components/Hero";
+import { TwoColumnsText } from "@/components/TwoColumnsText";
+import { ImageTextBlock } from "@/components/ImageTextBlock";
+
+import { getPageDataQuery } from "@/sanity/sanityQueries";
+import AreaBlock  from "@/components/AreaBlock";
 
 async function getData(slug: string): Promise<SanityDocument | null> {
-  const query = `*[_type == "page" && slug.current == "${slug}" ]{
-    title,
-  "slug": slug.current,
-  pageBuilder[]{
-    _type=="hero" => {
-      _type,
-      "image": image.asset->url,
-      title,
-      subtitle,
-      hasButton,
-      link,
-      linkText
-    }
-  }
-  }[0]`;
-
+  const query = getPageDataQuery(slug);
   const data = await sanityFetch<SanityDocument>({ query });
 
   console.log("console da página", data);
@@ -34,22 +24,61 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return <h1>Página {params.slug} não encontrada</h1>; // Pode retornar algo mais específico se os dados forem nulos
   }
 
-  const heroData = data.pageBuilder.find((item) => item._type === "hero");
-
   return (
     <div>
-      <h1>{data.title}</h1>
-      {heroData && (
-        <Hero
-          title={heroData.title}
-          subtitle={heroData.subtitle}
-          hasButton={heroData.hasButton}
-          link={heroData.link}
-          linkText={heroData.linkText}
-          image={heroData.image}
-        />
-      )}
-      
+      {data.pageBuilder.map((block, index) => {
+        switch (block._type) {
+          case "hero":
+            return (
+              <Hero
+                key={index}
+                title={block.title}
+                subtitle={block.subtitle}
+                hasButton={block.hasButton}
+                link={block.link}
+                linkText={block.linkText}
+                image={block.image}
+              />
+            );
+          case "twoColumnsText":
+            return (
+              <TwoColumnsText
+                key={index}
+                title={block.title}
+                column1={block.column1}
+                column2={block.column2}
+                hasButton={block.hasButton}
+                buttonText={block.buttonText}
+                link={block.link}
+              />
+            );
+          case "imageText":
+            return (
+              <ImageTextBlock
+                key={index}
+                title={block.title}
+                content={block.content}
+                hasOneButton={block.hasOneButton}
+                hasTwoButtons={block.hasTwoButtons}
+                linkButtonOne={block.linkButtonOne}
+                linkButtonTwo={block.linkButtonTwo}
+                textButtonOne={block.textButtonOne}
+                textButtonTwo={block.textButtonTwo}
+                image={block.image}
+                alt={block.alt}
+              />
+            );
+            case "areasBlock":
+            return (
+              <AreaBlock
+                key={index}
+                areas={block.areas}
+              />
+            );
+          default:
+            return null;
+        }
+      })}
     </div>
   );
 }
