@@ -14,7 +14,6 @@ type ImageTextBlockProps = {
   alt: string;
 };
 
-
 export function ImageTextBlock({
   title,
   image,
@@ -42,7 +41,7 @@ export function ImageTextBlock({
         <div className="space-y-2">
           <h2 className="text-3xl font-bold tracking-tighter">{title}</h2>
 
-          <PortableText className="text-muted-foreground" value={content} />
+          <PortableText value={content} />
         </div>
         <div className="space-x-4">
           {hasOneButton && linkButtonOne && (

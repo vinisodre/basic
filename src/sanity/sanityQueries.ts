@@ -1,5 +1,6 @@
 export const getPageDataQuery = (slug: string) => `
-  *[_type == "page" && slug.current == "${slug}"]{
+ 
+  *[_type == "page" && slug.current == "anime"]{
   title,
   "slug": slug.current,
   pageBuilder[]{
@@ -43,6 +44,15 @@ export const getPageDataQuery = (slug: string) => `
         link,
         buttonText,
         "image": image.asset->url,
+      }
+    },
+    _type == "galery" => {
+      _type,
+      title,
+      description,
+      images[]{
+        "image": asset->url,
+        alt
       }
     }
   }

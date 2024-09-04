@@ -18,7 +18,11 @@ type BlogBlockProps = {
 
 console.log(blogPosts.length);
 
-export function BlogBlock({ blockTitle, posts, hasButton=false }: BlogBlockProps) {
+export function BlogBlock({
+  blockTitle,
+  posts,
+  hasButton = false,
+}: BlogBlockProps) {
   return (
     <section className="py-12 md:py-24">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -41,14 +45,16 @@ export function BlogBlock({ blockTitle, posts, hasButton=false }: BlogBlockProps
         </div>
         {hasButton && (
           <div className="flex justify-end mt-12">
-          <Link href="/blog"> 
-            <Button variant="link" className="">
-              Ver mais artigos <ArrowRightIcon className="ml-1 w-4 h-4" />
-            </Button>
-          </Link>
-        </div>
+            <Link href="/blog">
+              <Button variant="link" className="">
+                Ver mais artigos <ArrowRightIcon className="ml-1 w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
         )}
       </div>
     </section>
   );
 }
+
+// TODO Criar schema para o bloco de artigos. blogs deve ser um array de artigos.

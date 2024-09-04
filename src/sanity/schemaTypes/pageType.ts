@@ -44,7 +44,13 @@ export const pageType = defineType({
           name: "areasBlock",
           type: "areasBlock",
         }),
+        defineArrayMember({
+          name: "galery",
+          type: "galery",
+        }),
       ],
     }),
   ],
 });
+
+// TODO Inserir um estados para controlar a renderização da página

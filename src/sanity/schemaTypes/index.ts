@@ -8,10 +8,11 @@ import { twoColumnsText } from './twoColumnsText'
 import { imageText } from './imageText'
 import { pageType } from './pageType'
 import { areasBlockType } from './areasBlockType'
+import { galeryType } from './galeryType'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    pageType, settings, areasType, heroType, blogPost, topbar, twoColumnsText, imageText, areasBlockType ],
+    pageType, settings, areasType, heroType, blogPost, topbar, twoColumnsText, imageText, areasBlockType, galeryType ],
 }
 

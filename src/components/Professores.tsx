@@ -11,7 +11,9 @@ type Professor = {
 };
 
 export function Professores() {
-  const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
+  const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(
+    null
+  );
 
   const handleProfessorClick = (professor: Professor) => {
     setSelectedProfessor(professor);
@@ -29,7 +31,8 @@ export function Professores() {
             Nossos Professores
           </h2>
           <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Excelentes profissionais dedicados a oferecer o melhor ensino público da região de Santa Cruz da Serra
+            Excelentes profissionais dedicados a oferecer o melhor ensino
+            público da região de Santa Cruz da Serra
           </p>
         </div>
       </div>
@@ -59,7 +62,10 @@ export function Professores() {
       {selectedProfessor && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-background">
           <div className="flex flex-col justify-center items-center bg-primary-foreground p-6 rounded-lg relative">
-            <button onClick={handleCloseModal} className="absolute top-2 right-4 muted">
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-2 right-4 muted"
+            >
               X
             </button>
             <img
@@ -83,3 +89,5 @@ export function Professores() {
     </section>
   );
 }
+
+// TODO criar um schema para o professor. Professores deve ser retornar um array de professores.

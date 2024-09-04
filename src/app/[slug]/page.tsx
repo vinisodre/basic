@@ -1,5 +1,3 @@
-
-
 import { sanityFetch } from "@/sanity/client";
 import { SanityDocument } from "next-sanity";
 import { Hero } from "@/components/Hero";
@@ -7,7 +5,8 @@ import { TwoColumnsText } from "@/components/TwoColumnsText";
 import { ImageTextBlock } from "@/components/ImageTextBlock";
 
 import { getPageDataQuery } from "@/sanity/sanityQueries";
-import AreaBlock  from "@/components/AreaBlock";
+import AreaBlock from "@/components/AreaBlock";
+import { ImageGalery } from "@/components/ImageGaleryBlock";
 
 async function getData(slug: string): Promise<SanityDocument | null> {
   const query = getPageDataQuery(slug);
@@ -68,11 +67,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 alt={block.alt}
               />
             );
-            case "areasBlock":
+          case "areasBlock":
+            return <AreaBlock key={index} areas={block.areas} />;
+          case "galery":
             return (
-              <AreaBlock
+              <ImageGalery
                 key={index}
-                areas={block.areas}
+                title={block.title}
+                description={block.description}
+                images={block.images}
               />
             );
           default:
@@ -82,6 +85,3 @@ export default async function Page({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-
-
-
