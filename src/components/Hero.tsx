@@ -6,46 +6,48 @@
 
 
 import Link from "next/link";
-import { heroContent } from "@/app/queries";
+// import { heroContent } from "@/app/queries";
 
 type HeroProps = {
   title?: string;
-  description?: string;
+  subtitle?: string;
   hasButton?: boolean;
   link?: string;
   linkText?: string;
+  image?: string;
 };
 
 
 export function Hero({
   title,
-  description,
+  subtitle,
   hasButton = false,
   link,
   linkText,
+  image
 }: HeroProps) {
   return (
     <section
       className="relative w-full h-[60vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage:
-          `url("${heroContent[0].imageHref}")`,
+          `url("${image}")`,
       }}
     >
       <div className="absolute inset-0 bg-black/50 z-0" />
       <div className="relative z-10 text-center space-y-6 max-w-3xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {heroContent[0].title}
+          {title}
         </h1>
-        <p className="text-xl text-gray-300">{heroContent[0].subtitle}</p>
+        <p className="text-xl text-gray-300">{subtitle}</p>
         <div>
-          {heroContent[0].hasButton && (
+          {hasButton && (
             <Link
-              href={heroContent[0].link}
+              href={link}
               className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               prefetch={false}
             >
-              {heroContent[0].linkText}
+              {linkText}
             </Link>
           )}
         </div>
