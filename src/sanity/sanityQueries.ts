@@ -1,7 +1,36 @@
+export const getUsers = () => `*[_type == "user"]{
+      name,
+      subject,
+      "image": profileImage.asset->url,
+      "slug": slug.current,
+  }`;
+
+export const menus = () => `*[_type == "menu"]{
+  menuItems[]{
+    links[]{
+      linkType,
+      page->{
+        title,
+        slug,
+      }
+    }
+  },
+  footerSections[]{
+    links[]{
+      title,
+      slug,
+    }
+  },
+  'logo':logo.asset->url
+  
+}[0]
+`;
+
 export const getPageDataQuery = (slug: string) => `
  
-  *[_type == "page" && slug.current == "anime"]{
+  *[_type == "page" && slug.current == "${slug}"]{
   title,
+  visible,
   "slug": slug.current,
   pageBuilder[]{
     _type == "hero" => {

@@ -1,51 +1,88 @@
+import { getPageDataQuery } from "@/sanity/sanityQueries";
+import { sanityFetch } from "@/sanity/client";
+import { SanityDocument } from "next-sanity";
 import { Hero } from "@/components/Hero";
-import { ImageGalery } from "@/components/ImageGaleryBlock";
-import { ImageTextBlock } from "@/components/ImageTextBlock";
 import { TwoColumnsText } from "@/components/TwoColumnsText";
+import { ImageTextBlock } from "@/components/ImageTextBlock";
 import AreaBlock from "@/components/AreaBlock";
+import { ImageGalery } from "@/components/ImageGaleryBlock";
 
-import Image from "next/image";
+async function getData(slug: string): Promise<SanityDocument | null> {
+  const query = getPageDataQuery(slug);
+  const data = await sanityFetch<SanityDocument>({ query });
 
-import { areas, imagesExamples, blogPosts } from "@/constants";
-import { BlogBlock } from "@/components/Blog-block";
+  console.log("console da página", data);
+  return data || null; // Retorna null se não houver dados
+}
 
-export default function Home() {
+export default async function Home() {
+  const slug = "home";
+  const data = await getData(slug);
   return (
-    <main className="">
-      <Hero
-        title="TESTE"
-        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        hasButton
-        link="/"
-        linkText="Saiba mais"
-      />
-      {/* <AreaBlock  /> */}
-
-      <TwoColumnsText
-        title="Sobre nós"
-        column1="Nossa história e nossa missão."
-        column2=" Nossos valores."
-        hasButton
-      />
-
-      <ImageTextBlock
-        title="Nossos Serviços"
-        content="Aqui mostraremos os nossos Serviços e os valores que nos foram dadas."
-        hasOneButton={true}
-        hasTwoButtons={false}
-        linkButtonOne="/"
-        textButtonOne="Saiba mais"
-        image="https://images.unsplash.com/photo-1719937206168-f4c829152b91?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wAWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="teste"
-      />
-
-      <ImageGalery
-        title="Título"
-        description="um subtitulo para chamar a atenção"
-        images={imagesExamples}
-      />
-
-      <BlogBlock blockTitle="BLOG" hasButton />
+    <main>
+      {!data.visible ? (
+        <h1>Página {params.slug} não visível</h1>
+      ) : (
+        <div>
+          {data.pageBuilder.map((block, index) => {
+            switch (block._type) {
+              case "hero":
+                return (
+                  <Hero
+                    key={index}
+                    title={block.title}
+                    subtitle={block.subtitle}
+                    hasButton={block.hasButton}
+                    link={block.link}
+                    linkText={block.linkText}
+                    image={block.image}
+                  />
+                );
+              case "twoColumnsText":
+                return (
+                  <TwoColumnsText
+                    key={index}
+                    title={block.title}
+                    column1={block.column1}
+                    column2={block.column2}
+                    hasButton={block.hasButton}
+                    buttonText={block.buttonText}
+                    link={block.link}
+                  />
+                );
+              case "imageText":
+                return (
+                  <ImageTextBlock
+                    key={index}
+                    title={block.title}
+                    content={block.content}
+                    hasOneButton={block.hasOneButton}
+                    hasTwoButtons={block.hasTwoButtons}
+                    linkButtonOne={block.linkButtonOne}
+                    linkButtonTwo={block.linkButtonTwo}
+                    textButtonOne={block.textButtonOne}
+                    textButtonTwo={block.textButtonTwo}
+                    image={block.image}
+                    alt={block.alt}
+                  />
+                );
+              case "areasBlock":
+                return <AreaBlock key={index} areas={block.areas} />;
+              case "galery":
+                return (
+                  <ImageGalery
+                    key={index}
+                    title={block.title}
+                    description={block.description}
+                    images={block.images}
+                  />
+                );
+              default:
+                return null;
+            }
+          })}
+        </div>
+      )}
     </main>
   );
 }
