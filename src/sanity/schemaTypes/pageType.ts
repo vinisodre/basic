@@ -11,13 +11,22 @@ export const pageType = defineType({
       description: "Nome da página",
     }),
     defineField({
+      name: "visible",
+      title: "Visibilidade da página",
+      type: "boolean",
+      description: "Essa página será visível?",
+      options: {
+        layout: "checkbox",
+      },
+    }),
+    defineField({
       name: "slug",
       title: "Endereço da página",
       type: "slug",
       description: "Qual será o endereço da página?",
       options: {
         source: "title",
-        maxLength: 200, // will be ignored if slugify is set
+        maxLength: 100, // will be ignored if slugify is set
         slugify: (input) =>
           input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
       },
@@ -48,6 +57,10 @@ export const pageType = defineType({
           name: "galery",
           type: "galery",
         }),
+        // defineArrayMember({
+        //   name: "teamMember",
+        //   type: "teamMember",
+        // }),
       ],
     }),
   ],

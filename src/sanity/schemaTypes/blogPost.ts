@@ -40,6 +40,20 @@ export const blogPost = defineType({
       type: "image",
     }),
     defineField({
+      name: "categories", // Referência ao schema "blogCategory"
+      title: "Categorias",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "blogCategory" }], // Faz referência ao schema userRole
+        },
+      ],
+      options: {
+        layout: "tags", // Permite a seleção múltipla
+      },
+    }),
+    defineField({
       name: "content",
       title: "Content",
       type: "array",
