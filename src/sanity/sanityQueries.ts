@@ -5,25 +5,31 @@ export const getUsers = () => `*[_type == "user"]{
       "slug": slug.current,
   }`;
 
-export const menus = () => `*[_type == "menu"]{
+export const menus = () => `*[_type == "menu"][0] {
   menuItems[]{
+    sectionTitle,
     links[]{
-      linkType,
+      title,
+      url,
       page->{
         title,
-        slug,
+        "url": slug.current
       }
     }
   },
-  footerSections[]{
+  "menufooter": footerSections[]{
+    sectionTitle,
     links[]{
       title,
-      slug,
+      url,
+      page->{
+        title,
+        "slug": slug.current
+      }
     }
   },
-  'logo':logo.asset->url
-  
-}[0]
+  "logo": logo.asset->url
+}
 `;
 
 export const getPageDataQuery = (slug: string) => `

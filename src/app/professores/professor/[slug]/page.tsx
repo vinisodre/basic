@@ -69,6 +69,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import Iframe from "@/components/ui/iframe";
+import portableTextConfig from "@/utils/portableTextConfig";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const data = await getUser(params.slug);
@@ -109,12 +110,12 @@ export default async function page({ params }: { params: { slug: string } }) {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="bio">Bio</Label>
-                  <textarea
-                    id="bio"
-                    className="w-full min-h-[100px] px-3 py-2 text-sm rounded-md border border-input bg-background"
-                    defaultValue="Passionate software developer with 5 years of experience in web technologies. Always eager to learn and tackle new challenges."
-                    readOnly
-                  />
+                  <div className="border rounded-md p-4">
+                    <PortableText
+                      value={data.bio}
+                      components={portableTextConfig}
+                    />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label>Redes Sociais</Label>
@@ -131,7 +132,12 @@ export default async function page({ params }: { params: { slug: string } }) {
           </div>
         </CardContent>
       </Card>
-      <Iframe />
+      <div className="flex justify-center items-center">
+        <iframe
+          src="https://www.notioniframe.com/notion/15jnprdyttn"
+          className="w-full h-screen"
+        ></iframe>
+      </div>
     </div>
   );
 }

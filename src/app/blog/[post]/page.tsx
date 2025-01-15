@@ -1,6 +1,10 @@
 import { sanityFetch } from "@/sanity/client";
 import { PortableText, SanityDocument } from "next-sanity";
+import portableTextConfig from "@/utils/portableTextConfig";
 import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 async function getData(slug: string): Promise<SanityDocument | null> {
   const query = `*[_type == "blogPost" && link.current == "${slug}"]{
@@ -25,7 +29,7 @@ export default async function Post({ params }: { params: { post: string } }) {
   if (!data) {
     return <p>Post not found</p>; // Mensagem de erro se o post não for encontrado
   }
-
+  console.log("posts ->", data.content);
   return (
     <>
       <article className="prose prose-red mx-auto max-w-3xl">
@@ -54,7 +58,14 @@ export default async function Post({ params }: { params: { post: string } }) {
           <span className="text-sm">Published on August 13, 2024</span>
         </div>
         <div className="mt-16">
-          <PortableText value={data.content} />
+          <PortableText value={data.content} components={portableTextConfig} />
+        </div>
+        <div className="mt-8 gap-2 flex items-center justify">
+          <Link href="/blog" className="text-black ">
+            <Button variant="link" className="text-lg">
+              <ArrowLeft className="" /> Voltar
+            </Button>
+          </Link>
         </div>
       </article>
     </>

@@ -19,7 +19,7 @@ async function getData(): Promise<SanityDocument | null> {
   const query = menus();
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console menu", data);
+  console.log("console menu ->", data);
   return data || null; // Retorna null se não houver dados
 }
 
@@ -29,15 +29,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const data = await getData();
-  console.log("console do logo", data.logo);
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <Topbar />
-        <Navbar logo={data.logo} menuItems={data.menuItems} />
+        <Navbar logo={data.logo} menu={data.menuItems[0].links} />
         {children}
-        <Footer />
+        <Footer logo={data.logo} menufooter={data.menufooter} />
       </body>
     </html>
   );

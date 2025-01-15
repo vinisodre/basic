@@ -4,21 +4,20 @@ import Link from "next/link";
 
 type NavbarProps = {
   logo: string;
-  menuItems: Array<{
-    links: Array<{
-      page: {
-        title: string;
-        slug: {
-          current: string;
-        };
-      };
-    }>;
+  menu: Array<{
+    title: string;
+    url?: string;
+    page?: {
+      title: string;
+      url: string;
+    };
   }>;
 };
 
-export function Navbar({ logo, menuItems }: NavbarProps) {
+export function Navbar({ logo, menu }: NavbarProps) {
   return (
     <header className="container mx-auto flex h-20 items-center px-4 md:px-6 relative">
+      {/* Menu Lateral para telas menores */}
       <Sheet>
         <SheetTrigger className="absolute" asChild>
           <Button variant="outline" size="icon" className="lg:hidden">
@@ -29,17 +28,12 @@ export function Navbar({ logo, menuItems }: NavbarProps) {
 
         <SheetContent side="left">
           <div className="flex flex-col gap-2 py-6">
-            {/* Mapear os itens do menu para o menu lateral */}
-            {menuItems.map((item, index) => (
-              <div key={index}>
-                {item.links.map((link, i) => (
-                  <Button key={i} variant="link" className="text-lg">
-                    <Link href={`/${link.page.slug.current}`}>
-                      {link.page.title}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
+            {menu.map((item, index) => (
+              <Button key={index} variant="link" className="text-lg">
+                <Link href={item.url || item.page?.url || "#"} prefetch={false}>
+                  {item.title || item.page?.title}
+                </Link>
+              </Button>
             ))}
             <Button variant="outline" className="text-lg">
               Contato
@@ -47,27 +41,22 @@ export function Navbar({ logo, menuItems }: NavbarProps) {
           </div>
         </SheetContent>
       </Sheet>
+
+      {/* Navbar em telas maiores */}
       <div className="flex justify-between w-full">
         {/* Logo */}
         <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
           <img src={logo} alt="Logo" width={100} />
         </Link>
 
-        {/* Navbar em telas maiores */}
         <nav className="ml-auto hidden lg:flex gap-6">
-          <div className="bg-accent flex gap-2 ">
-            {menuItems.map((item, index) => (
-              <div key={index}>
-                {item.links.map((link, i) => (
-                  <Button key={i} variant="link" className="text-lg">
-                    <Link href={`/${link.page.slug.current}`}>
-                      {link.page.title}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
-            ))}
-          </div>
+          {menu.map((item, index) => (
+            <Button key={index} variant="link" className="text-lg">
+              <Link href={item.url || item.page?.url || "#"} prefetch={false}>
+                {item.title || item.page?.title}
+              </Link>
+            </Button>
+          ))}
           <Link href="/contato" prefetch={false}>
             <Button
               variant="outline"
