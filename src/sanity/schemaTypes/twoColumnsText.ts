@@ -12,13 +12,27 @@ export const twoColumnsText = defineType({
     }),
     defineField({
       name: "column1",
-      description: "Coluna 1",
-      type: "string",
+      title: "Coluna 1",
+      type: "array",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+        },
+      ],
+      description: "Conteúdo curto do bloco",
     }),
     defineField({
       name: "column2",
-      description: "Coluna 2",
-      type: "string",
+      title: "Coluna 2",
+      type: "array",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+        },
+      ],
+      description: "Conteúdo curto do bloco",
     }),
     defineField({
       name: "hasButton",
@@ -30,14 +44,14 @@ export const twoColumnsText = defineType({
       },
     }),
     defineField({
-        name: "link",
-        title: "Link",
-        type: "string",
+      name: "link",
+      title: "Link",
+      type: "string",
     }),
     defineField({
       name: "buttonText",
       title: "Texto do botão",
       type: "string",
-  })
+    }),
   ],
 });

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "./Button";
+import Image from "next/image";
 
 export type UserProps = {
   name: string;
@@ -11,7 +12,7 @@ export type UserProps = {
 export default function User({ name, subject, image, slug }: UserProps) {
   return (
     <div className="flex flex-col items-center justify-center">
-      <img
+      <Image
         src={image}
         alt={name}
         width={100}

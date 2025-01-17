@@ -19,8 +19,7 @@ async function getData(): Promise<SanityDocument | null> {
   const query = menus();
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console menu ->", data);
-  return data || null; // Retorna null se não houver dados
+  return data;
 }
 
 export default async function RootLayout({

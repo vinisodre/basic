@@ -7,8 +7,7 @@ async function getAllUsers() {
   const query = getUsers();
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console da página", data);
-  return data || null; // Retorna null se não houver dados
+  return data;
 }
 
 export default async function professores() {

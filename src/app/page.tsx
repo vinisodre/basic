@@ -11,8 +11,7 @@ async function getData(slug: string): Promise<SanityDocument | null> {
   const query = getPageDataQuery(slug);
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console da página", data);
-  return data || null; // Retorna null se não houver dados
+  return data;
 }
 
 export default async function Home() {
@@ -20,7 +19,7 @@ export default async function Home() {
   const data = await getData(slug);
   return (
     <main>
-      {!data.visible ? (
+      {!data ? (
         <h1>Página {params.slug} não visível</h1>
       ) : (
         <div>

@@ -4,7 +4,6 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-
 import Link from "next/link";
 // import { heroContent } from "@/app/queries";
 
@@ -17,21 +16,19 @@ type HeroProps = {
   image?: string;
 };
 
-
 export function Hero({
   title,
   subtitle,
   hasButton = false,
   link,
   linkText,
-  image
+  image,
 }: HeroProps) {
   return (
     <section
-      className="relative w-full h-[60vh] flex items-center justify-center bg-cover bg-center"
+      className="relative w-full h-[60vh] lg:h-[30vh] flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage:
-          `url("${image}")`,
+        backgroundImage: `url("${image}")`,
       }}
     >
       <div className="absolute inset-0 bg-black/50 z-0" />

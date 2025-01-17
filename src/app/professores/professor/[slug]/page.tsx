@@ -18,41 +18,8 @@ async function getUser(slug: string): Promise<SanityDocument | UserProps> {
 
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console do usuário", data);
-
-  return data || null;
+  return data;
 }
-
-// export default async function page({ params }: { params: { slug: string } }) {
-//   const data = await getUser(params.slug);
-//   return (
-//     <div className="container mx-auto px-4 md:px-6">
-//       <h1 className="text-4xl text-center my-10">
-//         Página do Professor {data.name}
-//       </h1>
-//       <div className=" flex-col items-center justify-center">
-//         <img src={data.image} alt={data.name} />
-//         <p>{data.email}</p>
-//         <p>{data.role}</p>
-//         <p>{data.subject}</p>
-//         <PortableText value={data.bio} />
-//       </div>
-//       <div>
-//         <h1 className="text-xl text-center my-10">Redes sociais</h1>
-//         <ul>
-//           {Object.entries(data.socialLinks).map(([key, value]) => (
-//             <li key={key}>
-//               <a href={value}>
-//                 <p>{key}</p>
-//                 <p>{value}</p>
-//               </a>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// }
 
 //TODO velificar o link das redes sociais com um case switch
 
@@ -68,12 +35,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import Iframe from "@/components/ui/iframe";
 import portableTextConfig from "@/utils/portableTextConfig";
+import { Github, Instagram, Linkedin } from "lucide-react";
+import { link } from "fs";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const data = await getUser(params.slug);
-
+  console.log("data do professor ->", data);
   return (
     <div className="container mx-auto py-8">
       <Card className="w-full max-w-4xl mx-auto">
@@ -120,11 +88,30 @@ export default async function page({ params }: { params: { slug: string } }) {
                 <div className="space-y-2">
                   <Label>Redes Sociais</Label>
                   <div className="flex flex-wrap gap-2">
-                    {Object.entries(data.socialLinks).map(([key, value]) => (
-                      <a href={value}>
-                        <Badge key={key}>{key}</Badge>
-                      </a>
-                    ))}
+                    {data.socialLinks.map((item: any, index: number) => {
+                      switch (item.platform) {
+                        case "github":
+                          return (
+                            <a href={item.url} key={index} target="_blank">
+                              <Github className="w-5 h-5" />
+                            </a>
+                          );
+                        case "linkedin":
+                          return (
+                            <a href={item.url} key={index} target="_blank">
+                              <Linkedin className="w-5 h-5" />
+                            </a>
+                          );
+                        case "instagram":
+                          return (
+                            <a href={item.url} key={index} target="_blank">
+                              <Instagram className="w-5 h-5" />
+                            </a>
+                          );
+                        default:
+                          return null;
+                      }
+                    })}
                   </div>
                 </div>
               </CardContent>
@@ -132,12 +119,6 @@ export default async function page({ params }: { params: { slug: string } }) {
           </div>
         </CardContent>
       </Card>
-      <div className="flex justify-center items-center">
-        <iframe
-          src="https://www.notioniframe.com/notion/15jnprdyttn"
-          className="w-full h-screen"
-        ></iframe>
-      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/Sheet";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import Image from "next/image";
 
 type NavbarProps = {
   logo: string;
@@ -46,7 +47,7 @@ export function Navbar({ logo, menu }: NavbarProps) {
       <div className="flex justify-between w-full">
         {/* Logo */}
         <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-          <img src={logo} alt="Logo" width={100} />
+          <Image src={logo} alt="Logo" width={100} height={100} />
         </Link>
 
         <nav className="ml-auto hidden lg:flex gap-6">

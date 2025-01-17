@@ -9,7 +9,7 @@ export const portableTextConfig = {
     image: ({ value }: { value: { asset: { url: string } } }) => (
       <Image
         src={urlFor(value.asset).url()!}
-        alt={value.alt || "Image"}
+        alt="Image"
         width={400}
         height={200}
         className="rounded-lg my-4"
@@ -31,7 +31,7 @@ export const portableTextConfig = {
       <h4 className="text-xl font-medium my-2">{children}</h4>
     ),
     normal: ({ children }: { children: React.ReactNode }) => (
-      <p className="text-base my-2">{children}</p>
+      <p className="text-base my-2 bg-blue-400">{children}</p>
     ),
     blockquote: ({ children }: { children: React.ReactNode }) => (
       <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4">
@@ -52,7 +52,7 @@ export const portableTextConfig = {
         href={value.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 underline hover:text-blue-700 underline"
+        className="text-blue-500 hover:text-blue-700 underline"
       >
         {children}
       </a>

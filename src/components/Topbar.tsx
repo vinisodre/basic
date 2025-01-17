@@ -7,7 +7,6 @@ type TopbarProps = {
 
 export function Topbar() {
   const topbarData: TopbarProps = topbar[0];
-  console.log("console do topbar", topbarData.text);
 
   return (
     topbarData.text && (
