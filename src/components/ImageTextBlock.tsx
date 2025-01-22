@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { PortableText } from "next-sanity";
+import { portableTextConfig } from "@/utils/portableTextConfig";
+import Image from "next/image";
 
 type ImageTextBlockProps = {
   title: string;
-  content: string;
+  content: Array<any>;
   hasOneButton?: boolean;
   hasTwoButtons?: boolean;
   linkButtonOne?: string;
@@ -29,7 +31,7 @@ export function ImageTextBlock({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-24">
       <div className="rounded-lg overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={alt}
           width={650}
@@ -40,14 +42,15 @@ export function ImageTextBlock({
       <div className="flex flex-col justify-center space-y-6">
         <div className="space-y-2">
           <h2 className="text-3xl font-bold tracking-tighter">{title}</h2>
-
-          <PortableText value={content} />
+          <PortableText value={content} components={portableTextConfig} />
         </div>
-        <div className="space-x-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between">
           {hasOneButton && linkButtonOne && (
             <Link
-              href={linkButtonOne}
-              className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              href={linkButtonOne || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex p-4 my-4 w-full sm:w-4/12   items-center justify-center rounded-md  text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"
               prefetch={false}
             >
               {textButtonOne}
@@ -58,7 +61,9 @@ export function ImageTextBlock({
             <>
               <Link
                 href={linkButtonTwo}
-                className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                target="_self"
+                rel="noopener noreferrer"
+                className="inline-flex p-4 my-4 w-full sm:w-4/12  items-center justify-center rounded-md  text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"
                 prefetch={false}
               >
                 {textButtonTwo}

@@ -4,27 +4,36 @@ export const getUsers = () => `*[_type == "user"]{
       "image": profileImage.asset->url,
       "slug": slug.current,
   }`;
-
-export const menus = () => `*[_type == "menu"]{
-  menuItems[]{
-    links[]{
-      linkType,
-      page->{
-        title,
-        slug,
-      }
+export const menus = () => `{
+    "menu": *[_type == "menu"][0] {
+      menuItems[] {
+        sectionTitle,
+        links[] {
+          title,
+          url,
+          page-> {
+            title,
+            "url": slug.current
+          }
+        }
+      },
+      "menufooter": footerSections[] {
+        sectionTitle,
+        links[] {
+          title,
+          url,
+          page-> {
+            title,
+            "url": slug.current // Tornando o nome consistente
+          }
+        }
+      },
+      "logo": logo.asset->url
+    },
+    "topbar": *[_type == "Topbar"][] { // Adicionando consistência no retorno
+      text
     }
-  },
-  footerSections[]{
-    links[]{
-      title,
-      slug,
-    }
-  },
-  'logo':logo.asset->url
-  
-}[0]
-`;
+  }`;
 
 export const getPageDataQuery = (slug: string) => `
  

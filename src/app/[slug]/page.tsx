@@ -8,12 +8,10 @@ import { getPageDataQuery } from "@/sanity/sanityQueries";
 import AreaBlock from "@/components/AreaBlock";
 import { ImageGalery } from "@/components/ImageGaleryBlock";
 
-async function getData(slug: string): Promise<SanityDocument | null> {
+async function getData(slug: string): Promise<SanityDocument> {
   const query = getPageDataQuery(slug);
   const data = await sanityFetch<SanityDocument>({ query });
-
-  console.log("console da página", data);
-  return data || null; // Retorna null se não houver dados
+  return data;
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -22,14 +20,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
   if (!data) {
     return <h1>Página {params.slug} não encontrada</h1>; // Pode retornar algo mais específico se os dados forem nulos
   }
-
   return (
     <main>
       {!data.visible ? (
         <h1>Página {params.slug} não visível</h1>
       ) : (
         <div>
-          {data.pageBuilder.map((block, index) => {
+          {data.pageBuilder.map((block: any, index: number) => {
             switch (block._type) {
               case "hero":
                 return (
@@ -83,7 +80,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   />
                 );
               default:
-                return null;
+                return (
+                  <>
+                    <h1>página ainda nao implementada</h1>
+                  </>
+                );
             }
           })}
         </div>

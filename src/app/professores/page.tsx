@@ -2,19 +2,24 @@ import { getUsers } from "@/sanity/sanityQueries";
 import { SanityDocument } from "next-sanity";
 import { sanityFetch } from "@/sanity/client";
 import UsersGalery from "@/components/UsersGalery";
+import { UserProps } from "@/components/ui/User";
 
 async function getAllUsers() {
   const query = getUsers();
-  const data = await sanityFetch<SanityDocument>({ query });
+  const data = await sanityFetch<SanityDocument[]>({ query });
 
-  console.log("console da página", data);
-  return data || null; // Retorna null se não houver dados
+  return data.map((doc) => ({
+    name: doc.name,
+    subject: doc.subject,
+    image: doc.image,
+    slug: doc.slug,
+  }));
 }
 
 export default async function professores() {
   const data = await getAllUsers();
   return (
-    <div className="container mx-auto px-4 md:px-6">
+    <div className="container mx-auto px-4 md:px-6 h-full">
       <div className="">
         <section className="container mx-auto py-12 px-4 md:px-6 lg:py-16">
           <div className="flex flex-col items-center justify-center space-y-6 text-center">

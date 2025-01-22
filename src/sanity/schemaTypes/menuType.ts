@@ -58,7 +58,7 @@ export const menuType = defineType({
                     {
                       name: "url",
                       title: "URL",
-                      type: "url",
+                      type: "string",
                       hidden: ({ parent }) => parent?.linkType !== "url",
                     },
                     {
@@ -118,7 +118,7 @@ export const menuType = defineType({
                     {
                       name: "url",
                       title: "URL",
-                      type: "url",
+                      type: "string",
                       hidden: ({ parent }) => parent?.linkType !== "url",
                     },
                     {

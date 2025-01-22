@@ -5,17 +5,12 @@ type TopbarProps = {
   color?: string;
 };
 
-export function Topbar() {
-  const topbarData: TopbarProps = topbar[0];
-  console.log("console do topbar", topbarData.text);
-
+export function Topbar({ text, color }: TopbarProps) {
   return (
-    topbarData.text && (
-      <div
-        className={`bg-primary text-primary-foreground py-2 px-4 text-center bg-slate-950 ${topbarData.color}`}
-      >
-        <p className="text-sm font-medium text-slate-50">{topbarData.text}</p>
-      </div>
-    )
+    <div
+      className={`bg-primary text-primary-foreground py-2 px-4 text-center bg-slate-950 ${color}`}
+    >
+      <p className="text-sm font-medium text-slate-50">{text}</p>
+    </div>
   );
 }

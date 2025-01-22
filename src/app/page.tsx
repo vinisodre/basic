@@ -7,24 +7,24 @@ import { ImageTextBlock } from "@/components/ImageTextBlock";
 import AreaBlock from "@/components/AreaBlock";
 import { ImageGalery } from "@/components/ImageGaleryBlock";
 
-async function getData(slug: string): Promise<SanityDocument | null> {
+async function getData(slug: string): Promise<SanityDocument> {
   const query = getPageDataQuery(slug);
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console da página", data);
-  return data || null; // Retorna null se não houver dados
+  return data;
 }
 
 export default async function Home() {
   const slug = "home";
   const data = await getData(slug);
+
   return (
     <main>
-      {!data.visible ? (
-        <h1>Página {params.slug} não visível</h1>
+      {!data ? (
+        <h1>Página {slug} não visível</h1>
       ) : (
         <div>
-          {data.pageBuilder.map((block, index) => {
+          {data.pageBuilder.map((block: any, index: number) => {
             switch (block._type) {
               case "hero":
                 return (

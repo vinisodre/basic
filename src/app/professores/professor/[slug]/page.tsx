@@ -1,10 +1,10 @@
-// import { UserProps } from "@/components/ui/User";
+import { UserProps } from "@/components/ui/User";
 import { sanityFetch } from "@/sanity/client";
 import { PortableText, SanityDocument } from "next-sanity";
 // import { title } from "process";
 // import React from "react";
 
-async function getUser(slug: string): Promise<SanityDocument | UserProps> {
+async function getUser(slug: string): Promise<SanityDocument> {
   const query = `*[_type == "user" && slug.current == "${slug}"]{
     name,
     subject,
@@ -18,41 +18,8 @@ async function getUser(slug: string): Promise<SanityDocument | UserProps> {
 
   const data = await sanityFetch<SanityDocument>({ query });
 
-  console.log("console do usuário", data);
-
-  return data || null;
+  return data;
 }
-
-// export default async function page({ params }: { params: { slug: string } }) {
-//   const data = await getUser(params.slug);
-//   return (
-//     <div className="container mx-auto px-4 md:px-6">
-//       <h1 className="text-4xl text-center my-10">
-//         Página do Professor {data.name}
-//       </h1>
-//       <div className=" flex-col items-center justify-center">
-//         <img src={data.image} alt={data.name} />
-//         <p>{data.email}</p>
-//         <p>{data.role}</p>
-//         <p>{data.subject}</p>
-//         <PortableText value={data.bio} />
-//       </div>
-//       <div>
-//         <h1 className="text-xl text-center my-10">Redes sociais</h1>
-//         <ul>
-//           {Object.entries(data.socialLinks).map(([key, value]) => (
-//             <li key={key}>
-//               <a href={value}>
-//                 <p>{key}</p>
-//                 <p>{value}</p>
-//               </a>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// }
 
 //TODO velificar o link das redes sociais com um case switch
 
@@ -68,15 +35,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import Iframe from "@/components/ui/iframe";
+import portableTextConfig from "@/utils/portableTextConfig";
+import { Github, Instagram, Linkedin } from "lucide-react";
+import { link } from "fs";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const data = await getUser(params.slug);
 
   return (
     <div className="container mx-auto py-8">
-      <Card className="w-full max-w-4xl mx-auto">
-        <CardContent className="p-6">
+      <Card className="w-full max-w-4xl mx-auto border-none">
+        <CardContent className="">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Left column - Image */}
             <div className="w-full md:w-1/3 flex flex-col items-center">
@@ -88,8 +57,10 @@ export default async function page({ params }: { params: { slug: string } }) {
 
             {/* Right column - Profile Data */}
             <div className="w-full md:w-2/3">
-              <CardHeader>
-                <CardTitle>{data.name}</CardTitle>
+              <CardHeader className="">
+                <CardTitle className="text-4xl sm:text-5xl font-bold">
+                  {data.name}
+                </CardTitle>
                 <CardDescription>{data.role}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -109,21 +80,40 @@ export default async function page({ params }: { params: { slug: string } }) {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="bio">Bio</Label>
-                  <textarea
-                    id="bio"
-                    className="w-full min-h-[100px] px-3 py-2 text-sm rounded-md border border-input bg-background"
-                    defaultValue="Passionate software developer with 5 years of experience in web technologies. Always eager to learn and tackle new challenges."
-                    readOnly
-                  />
+                  <div className="border rounded-md p-4">
+                    <PortableText
+                      value={data.bio}
+                      components={portableTextConfig}
+                    />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label>Redes Sociais</Label>
                   <div className="flex flex-wrap gap-2">
-                    {Object.entries(data.socialLinks).map(([key, value]) => (
-                      <a href={value}>
-                        <Badge key={key}>{key}</Badge>
-                      </a>
-                    ))}
+                    {data.socialLinks.map((item: any, index: number) => {
+                      switch (item.platform) {
+                        case "github":
+                          return (
+                            <a href={item.url} key={index} target="_blank">
+                              <Github className="w-8 h-8" />
+                            </a>
+                          );
+                        case "linkedin":
+                          return (
+                            <a href={item.url} key={index} target="_blank">
+                              <Linkedin className="w-8 h-8" />
+                            </a>
+                          );
+                        case "instagram":
+                          return (
+                            <a href={item.url} key={index} target="_blank">
+                              <Instagram className="w-8 h-8" />
+                            </a>
+                          );
+                        default:
+                          return null;
+                      }
+                    })}
                   </div>
                 </div>
               </CardContent>
@@ -131,7 +121,6 @@ export default async function page({ params }: { params: { slug: string } }) {
           </div>
         </CardContent>
       </Card>
-      <Iframe />
     </div>
   );
 }
