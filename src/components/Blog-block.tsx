@@ -10,8 +10,6 @@ type BlogBlockProps = {
   posts?: BlogCardProps[];
 };
 
-console.log("console blogpost", blogPosts);
-
 export function BlogBlock({ blockTitle, hasButton = false }: BlogBlockProps) {
   return (
     <section className="py-12 md:py-24">

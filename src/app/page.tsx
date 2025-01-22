@@ -7,7 +7,7 @@ import { ImageTextBlock } from "@/components/ImageTextBlock";
 import AreaBlock from "@/components/AreaBlock";
 import { ImageGalery } from "@/components/ImageGaleryBlock";
 
-async function getData(slug: string): Promise<SanityDocument | null> {
+async function getData(slug: string): Promise<SanityDocument> {
   const query = getPageDataQuery(slug);
   const data = await sanityFetch<SanityDocument>({ query });
 
@@ -17,10 +17,11 @@ async function getData(slug: string): Promise<SanityDocument | null> {
 export default async function Home() {
   const slug = "home";
   const data = await getData(slug);
+
   return (
     <main>
       {!data ? (
-        <h1>Página {params.slug} não visível</h1>
+        <h1>Página {slug} não visível</h1>
       ) : (
         <div>
           {data.pageBuilder.map((block: any, index: number) => {

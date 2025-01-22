@@ -8,7 +8,7 @@ import { getPageDataQuery } from "@/sanity/sanityQueries";
 import AreaBlock from "@/components/AreaBlock";
 import { ImageGalery } from "@/components/ImageGaleryBlock";
 
-async function getData(slug: string): Promise<SanityDocument | null> {
+async function getData(slug: string): Promise<SanityDocument> {
   const query = getPageDataQuery(slug);
   const data = await sanityFetch<SanityDocument>({ query });
   return data;

@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
-async function getData(slug: string): Promise<SanityDocument | null> {
+async function getData(slug: string): Promise<SanityDocument> {
   const query = `*[_type == "blogPost" && link.current == "${slug}"]{
     title,
     description,

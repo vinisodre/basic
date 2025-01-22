@@ -1,5 +1,3 @@
-// ./schemas/heroType.ts
-
 import { defineField, defineType } from "sanity";
 
 export const heroType = defineType({
@@ -31,18 +29,14 @@ export const heroType = defineType({
       title: "Link",
       type: "string",
       description: "Se tiver botão, qual é o link para a área específica?",
-      options: {
-        if: ({ parent }) => parent?.hasButton,
-      },
+      hidden: ({ parent }) => !parent?.hasButton,
     }),
     defineField({
       name: "linkText",
       title: "Texto do botão",
       type: "string",
       description: "Se tiver botão, qual é o texto do botão?",
-      options: {
-        if: ({ parent }) => parent?.hasButton,
-      },
+      hidden: ({ parent }) => !parent?.hasButton,
     }),
     defineField({
       name: "image",

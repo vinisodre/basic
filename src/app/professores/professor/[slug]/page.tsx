@@ -1,10 +1,10 @@
-// import { UserProps } from "@/components/ui/User";
+import { UserProps } from "@/components/ui/User";
 import { sanityFetch } from "@/sanity/client";
 import { PortableText, SanityDocument } from "next-sanity";
 // import { title } from "process";
 // import React from "react";
 
-async function getUser(slug: string): Promise<SanityDocument | UserProps> {
+async function getUser(slug: string): Promise<SanityDocument> {
   const query = `*[_type == "user" && slug.current == "${slug}"]{
     name,
     subject,
@@ -41,7 +41,7 @@ import { link } from "fs";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const data = await getUser(params.slug);
-  console.log("data do professor ->", data);
+
   return (
     <div className="container mx-auto py-8">
       <Card className="w-full max-w-4xl mx-auto border-none">

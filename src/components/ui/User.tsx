@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "./Button";
 import Image from "next/image";
 
 export type UserProps = {

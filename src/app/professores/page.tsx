@@ -2,12 +2,18 @@ import { getUsers } from "@/sanity/sanityQueries";
 import { SanityDocument } from "next-sanity";
 import { sanityFetch } from "@/sanity/client";
 import UsersGalery from "@/components/UsersGalery";
+import { UserProps } from "@/components/ui/User";
 
 async function getAllUsers() {
   const query = getUsers();
-  const data = await sanityFetch<SanityDocument>({ query });
+  const data = await sanityFetch<SanityDocument[]>({ query });
 
-  return data;
+  return data.map((doc) => ({
+    name: doc.name,
+    subject: doc.subject,
+    image: doc.image,
+    slug: doc.slug,
+  }));
 }
 
 export default async function professores() {

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 type ImageTextBlockProps = {
   title: string;
-  content: string;
+  content: Array<any>;
   hasOneButton?: boolean;
   hasTwoButtons?: boolean;
   linkButtonOne?: string;
@@ -47,7 +47,7 @@ export function ImageTextBlock({
         <div className="flex flex-col sm:flex-row sm:justify-between">
           {hasOneButton && linkButtonOne && (
             <Link
-              href={linkButtonOne}
+              href={linkButtonOne || "#"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex p-4 my-4 w-full sm:w-4/12   items-center justify-center rounded-md  text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"

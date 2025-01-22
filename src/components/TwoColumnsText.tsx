@@ -6,8 +6,8 @@ import { portableTextConfig } from "@/utils/portableTextConfig";
 
 interface TwoColumnsTextProps {
   title?: string;
-  column1?: string;
-  column2?: string;
+  column1?: Array<any>;
+  column2?: Array<any>;
   hasButton?: boolean;
   buttonText?: string;
   link?: string;
