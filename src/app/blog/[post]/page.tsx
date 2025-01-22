@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/client";
 import { PortableText, SanityDocument } from "next-sanity";
-import portableTextConfig from "@/utils/portableTextConfig";
+import { portableTextConfig } from "@/utils/portableTextConfig";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";

@@ -13,7 +13,7 @@ async function getAllUsers() {
 export default async function professores() {
   const data = await getAllUsers();
   return (
-    <div className="container mx-auto px-4 md:px-6">
+    <div className="container mx-auto px-4 md:px-6 h-full">
       <div className="">
         <section className="container mx-auto py-12 px-4 md:px-6 lg:py-16">
           <div className="flex flex-col items-center justify-center space-y-6 text-center">

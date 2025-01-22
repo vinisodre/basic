@@ -44,8 +44,8 @@ export default async function page({ params }: { params: { slug: string } }) {
   console.log("data do professor ->", data);
   return (
     <div className="container mx-auto py-8">
-      <Card className="w-full max-w-4xl mx-auto">
-        <CardContent className="p-6">
+      <Card className="w-full max-w-4xl mx-auto border-none">
+        <CardContent className="">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Left column - Image */}
             <div className="w-full md:w-1/3 flex flex-col items-center">
@@ -57,8 +57,10 @@ export default async function page({ params }: { params: { slug: string } }) {
 
             {/* Right column - Profile Data */}
             <div className="w-full md:w-2/3">
-              <CardHeader>
-                <CardTitle>{data.name}</CardTitle>
+              <CardHeader className="">
+                <CardTitle className="text-4xl sm:text-5xl font-bold">
+                  {data.name}
+                </CardTitle>
                 <CardDescription>{data.role}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -93,19 +95,19 @@ export default async function page({ params }: { params: { slug: string } }) {
                         case "github":
                           return (
                             <a href={item.url} key={index} target="_blank">
-                              <Github className="w-5 h-5" />
+                              <Github className="w-8 h-8" />
                             </a>
                           );
                         case "linkedin":
                           return (
                             <a href={item.url} key={index} target="_blank">
-                              <Linkedin className="w-5 h-5" />
+                              <Linkedin className="w-8 h-8" />
                             </a>
                           );
                         case "instagram":
                           return (
                             <a href={item.url} key={index} target="_blank">
-                              <Instagram className="w-5 h-5" />
+                              <Instagram className="w-8 h-8" />
                             </a>
                           );
                         default:

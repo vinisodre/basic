@@ -26,7 +26,7 @@ export function Hero({
 }: HeroProps) {
   return (
     <section
-      className="relative w-full h-[60vh] lg:h-[30vh] flex items-center justify-center bg-cover bg-center"
+      className="relative w-full h-[60vh] lg:h-[50vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage: `url("${image}")`,
       }}

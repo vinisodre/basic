@@ -2,7 +2,7 @@ import Link from "next/link";
 import ArrowRightIcon from "./ui/ArrowRightIcon";
 import { Button } from "./ui/Button";
 import { PortableText } from "next-sanity";
-import portableTextConfig from "@/utils/portableTextConfig";
+import { portableTextConfig } from "@/utils/portableTextConfig";
 
 interface TwoColumnsTextProps {
   title?: string;

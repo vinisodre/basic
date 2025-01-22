@@ -23,7 +23,7 @@ export default async function Home() {
         <h1>Página {params.slug} não visível</h1>
       ) : (
         <div>
-          {data.pageBuilder.map((block, index) => {
+          {data.pageBuilder.map((block: any, index: number) => {
             switch (block._type) {
               case "hero":
                 return (

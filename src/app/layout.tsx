@@ -31,7 +31,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="flex flex-col h-screen">
         <Topbar />
         <Navbar logo={data.logo} menu={data.menuItems[0].links} />
         {children}

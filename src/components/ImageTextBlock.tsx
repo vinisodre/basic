@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PortableText } from "next-sanity";
-import portableTextConfig from "@/utils/portableTextConfig";
+import { portableTextConfig } from "@/utils/portableTextConfig";
 import Image from "next/image";
 
 type ImageTextBlockProps = {
@@ -44,13 +44,13 @@ export function ImageTextBlock({
           <h2 className="text-3xl font-bold tracking-tighter">{title}</h2>
           <PortableText value={content} components={portableTextConfig} />
         </div>
-        <div className="space-x-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between">
           {hasOneButton && linkButtonOne && (
             <Link
               href={linkButtonOne}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 items-center justify-center rounded-md px-8 text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"
+              className="inline-flex p-4 my-4 w-full sm:w-4/12   items-center justify-center rounded-md  text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"
               prefetch={false}
             >
               {textButtonOne}
@@ -63,7 +63,7 @@ export function ImageTextBlock({
                 href={linkButtonTwo}
                 target="_self"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 items-center justify-center rounded-md px-8 text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"
+                className="inline-flex p-4 my-4 w-full sm:w-4/12  items-center justify-center rounded-md  text-sm font-medium shadow hover:bg-slate-950 hover:text-slate-50"
                 prefetch={false}
               >
                 {textButtonTwo}

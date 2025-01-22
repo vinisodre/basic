@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <h1>Página {params.slug} não visível</h1>
       ) : (
         <div>
-          {data.pageBuilder.map((block, index) => {
+          {data.pageBuilder.map((block: any, index: number) => {
             switch (block._type) {
               case "hero":
                 return (
